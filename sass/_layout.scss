@@ -1,0 +1,399 @@
+/*------------------------------------*\
+全部頁面共用layout
+\*------------------------------------*/
+
+.wrap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/**
+*header區塊內容
+**/
+header {
+  background: url(../images/bg_header.jpg) center top no-repeat;
+  height: 85%;
+  width: 100%;
+  @include background-size(cover); 
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.snow {
+  position: absolute;
+  left: 0;
+  top: -5%;
+}
+.logo {
+  @include inline-block;
+  @include hide-text;
+  margin-top: .5em;
+  max-width: 231px;
+  width: 30%;
+  height: 100px;
+  background: url(../images/logo.png) center top no-repeat;
+  @include background-size(100% auto);
+}
+
+/*h1*/.tit {
+  @include hide-text;
+  max-width: $w-s;
+  margin: $m-center;
+  background: url(../images/t_all.png) center 100% no-repeat;
+  @include background-size(80% auto); 
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 5%;
+  div {
+    display: none;
+  }
+  @include breakpoint(mobile) {
+    background-image: url(../images/t_all-2.png);
+    @include background-size(90% auto);
+  }
+  @include breakpoint(pad) {
+    background: none;
+    height: 150px;
+    width: 960px;
+    left: 50%;
+    margin-left: -420px;
+    position: absolute;
+    bottom: 5%;
+    div {
+      display: block;
+    }
+  }
+}
+
+%transition {
+  position: absolute;
+  @include opacity(0);
+  @include transition (all 0.2s);
+    &.out {
+      @include opacity(1);
+    }
+  }
+@for $i from 1 through 12 {
+  .t#{$i} {
+    @extend .icon-t#{$i};
+    @extend %transition;
+  }
+}
+
+%transform {
+  @include transform (scale(2) translate(-600px, -300px) rotate(-360deg)) ;
+  z-index: 1;
+  &.out {
+    @include transform (scale(1) translate(0) rotate(0));
+  }
+}
+@for $i from 1 through 10 {
+  .t#{$i} {
+    @extend %transform;
+  } 
+}
+
+.t1 {
+  left: 105px;
+}
+.t2 {
+  left: 172px;
+}
+.t3 {
+  left: 236px;
+}
+.t4 {
+  left: 300px;
+}
+.t5 {
+  left: 380px;
+}
+.t6 {
+  left: 444px;
+}
+.t7 {
+  left: 509px;
+}
+.t8 {
+  left: 574px;
+}
+.t9 {
+  left: 639px;
+}
+.t10 {
+  left: 704px;
+}
+.t11 {
+  top: 200px;
+  left: 100px;
+  z-index: 1;
+  &.out {
+    top: 105px;
+  }
+}
+.t12 {
+  @include transform (scaleX(0.1) translateX(-500px));
+  z-index: 0;
+  &.out {
+    @include transform (scaleX(1) translateX(0px));
+  }
+}
+/**
+*contents區塊內容
+*各單元內容顯示區
+**/
+.content {
+  background: $color-bg url(../images/bg.jpg) center top no-repeat fixed;
+  @include background-size(cover); 
+  position: relative;
+}
+/*參加步驟*/
+.step {
+  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.step-group {
+  margin: $m-center;
+  max-width: $w;
+  padding: 10px;
+  text-align: center;
+  li {
+    background-color: #000;
+    border: 1px solid #000;
+    max-width: 330px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  @include  breakpoint(pad){
+    padding: 30px 0px;
+    li {
+      @include inline-block;
+      width: 30%;
+      vertical-align: top;
+      margin-left: 4%;
+      margin-bottom: 0;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}
+.step-text {
+  padding: 0 20px 20px 20px;
+  @include inline-block;
+  p {
+    color: darken($color-text,40%);
+    text-align: left;
+    font-style: italic;
+  }
+  hr {
+    border-color: darken($color-text,40%);
+    border-width: 1px 0 0 0;
+  }
+  input {
+    width: $percent;
+    padding: 5px;
+    font-family: "微軟正黑體";
+  }
+  input[type='button'] {
+    cursor: pointer;
+    color: #d4d4d4;
+    font-size: 1em;
+    font-weight: bold;
+    background-color: #4267b2;
+    @include border-radius(5px);
+    @include transition(all,.3s);
+    &:hover {
+      color: #fff;
+      background-color: #4375d9;
+    }
+  }
+}
+.btn {
+  padding: 10px;
+  text-align: center;
+  a {
+    margin-bottom: 10px;
+    width: 90%;
+    @include inline-block;
+    padding: 1em;
+    @include border-radius(.5em);
+    color: darken($color-text,40%);
+    @include transition(all,.3s);
+    &:hover {
+      color: $color-text;
+    }
+  }
+  @include breakpoint(mobile) {
+    a {
+      width: 30%;
+      max-width: 300px;
+      margin-left: 10px;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+  @include breakpoint(pad) {
+    padding-bottom: 30px;
+  }
+}
+.btn-home {
+  background-color: #86151d;
+  &:hover {
+    background-color: #b11e28;
+  }
+}
+.btn-fb {
+  background-color: #4267b2;
+  &:hover {
+    background-color: #4375d9;
+  }
+}
+.btn-live {
+  background-color: #2e6d07;
+  &:hover {
+    background-color: #4ca317;
+  }
+}
+/*活動說明*/
+.activity {
+  max-width: $w;
+  margin: $m-center;
+  padding: 10px;
+  @include text-shadow(rgba(black, 1) 1px 1px 3px);
+  h3 {
+    color: $color-text-second;
+    font-style: italic;
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 1.8em;
+    border-bottom: 1px solid darken($color-text-second,10%);
+    padding-left: .5em;
+    margin-top: 1em;
+    margin-bottom: .2em;
+  } 
+  >p {
+    padding-left: 1em;
+  }
+}
+.reward {
+  background-color: #000;
+  padding: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  ul {
+    margin-top: 10px;
+  }
+  /*li*/.on {
+    color: #ab0c0c;
+    text-decoration: line-through;
+    //    font-size: 1.8em;
+    &:after {
+      content: url(../images/icon_t.png);
+      line-height: 1.8em;
+      @include inline-block;
+      margin-left: .5em;
+    }
+  }
+  @include breakpoint (pad) {
+    ul {
+      text-align: center;
+    }
+  }
+}
+.reward-tit {
+  text-align: center;
+  //  border-style: dashed;
+  border-bottom: 1px dashed darken($color-text,75%);
+  img {
+    margin: $m-center;
+    display: block;
+    max-width: $percent;
+    height: auto;
+  }
+  span {
+    color: lighten($color-text-second,10%);
+    font-size: 2em;
+    font-weight: bold;
+    line-height: 2em;
+    @include inline-block;
+    width: 90%;
+    max-width: 400px;
+    border: 2px solid #b11e28;
+    background-color: #86151d;
+    margin: 20px 0px;
+    @include border-radius(.2em);
+    @include box-shadow(rgba(black, 0.5) 0 0 5px 0px inset); 
+  }
+}
+/**
+*footer區塊內容
+**/
+footer {
+  background-color: #501010;
+  color: darken($color-text,40%);
+  //  font-size: .5em;
+  line-height: 1.5em;
+  padding: 10px;
+  @include clearfix;
+
+}
+/*注意事項*/
+.notice {
+  font-size: .9em;
+  max-width: $w;
+  margin: $m-center;
+  padding: .5em .5em 2em .5em;
+  border-bottom: 1px solid darken($color-text,40%);
+  ul {
+    list-style: decimal;
+    padding-left: 1.5em;
+  }
+}
+.copyrigth {
+  font-size: .5em;
+  max-width: $w;
+  margin: $m-center;
+  position: relative;
+  @include clearfix;
+}
+.company {
+  text-align: left;
+  overflow: hidden;
+  margin-top: 10px;
+  li {
+    @include inline-block;
+    margin-right: 15px;
+  }
+}
+.grade {
+  line-height: 1.3em;
+  position: absolute;
+  top: 10px;
+  right: 0px;
+  ul {
+    display: none;
+  }
+  @include breakpoint(pad) {
+    top: 10px;
+    ul{
+      display: block;
+      float: left;
+    }
+    .icon-12 {
+      float: right;
+      margin-left: 10px;
+    }
+  }
+}
